@@ -1,0 +1,11 @@
+source:
+  bucket: "read-write-test01"
+  blobKey: "image_2020_04_24T15_07_58_138Z.png"
+destination:
+  bucket: "read-write-test01"
+  blobKey: "image_2020_04_24T15_07_58_138Z_converted.png"
+workingFolder: "C:\\Downloads"
+ffmpegPath: "c:\\!Tests\\ffmpeg\\ffmpeg.exe"
+outputResolution:
+  width: 320
+  height: 240
