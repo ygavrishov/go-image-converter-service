@@ -1,0 +1,15 @@
+source:
+  folderPath: c:\\Downloads\\selfies
+
+destination:
+  blobStorage:
+    containerName: sample-thumbnails
+  localDrive:
+    folderPath: c:\\!Tests\\Selfies\\output
+
+label:
+  fontfile: assets\\CascadiaCodePL.ttf
+  dpi: 72.0
+  size: 15.0
+  position_X: 30
+  position_Y: 30
