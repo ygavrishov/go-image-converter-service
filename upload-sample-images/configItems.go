@@ -1,5 +1,7 @@
 package main
 
+import "github.com/spf13/viper"
+
 type sourceParams struct {
 	FolderPath string
 }
@@ -26,4 +28,15 @@ type serviceConfig struct {
 	Destination      destinationParams
 	Label            labelParams
 	NeededImageCount int
+}
+
+func loadConfig() (*serviceConfig, error) {
+	viper.SetConfigFile("config.yaml")
+	var config = serviceConfig{}
+	var err = viper.ReadInConfig()
+	if err != nil {
+		return nil, err
+	}
+	viper.Unmarshal(&config)
+	return &config, nil
 }

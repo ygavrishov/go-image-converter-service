@@ -1,7 +1,7 @@
 # Sample Thumbnail Generator
 
-The app
+The utility
 * takes all images from the specified folder
-* replicate them to the specified amount
-* mark each image with a number
-* deploys all images to specified Azure Blob Account
+* make desired number of copies of these files
+* mark each image with its ordinal number
+* deploys all images to the specified Azure Blob account
