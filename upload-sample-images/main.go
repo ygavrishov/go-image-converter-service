@@ -46,7 +46,7 @@ func main() {
 
 	files, _ := ioutil.ReadDir(config.Source.FolderPath)
 	var fileCounter = 0
-	for i := 0; i < 100; i++ {
+	for i := 0; i < config.NeededImageCount; i++ {
 		var fileInfo = files[fileCounter]
 		if fileCounter < len(files)-1 {
 			fileCounter++
@@ -72,8 +72,8 @@ func main() {
 		c.SetDst(rgba)
 		c.SetSrc(fontForeground)
 
-		// Draw the text.
-		_, err = c.DrawString(numberString, freetype.Pt(30, 20))
+		// Draw the text
+		_, err = c.DrawString(numberString, freetype.Pt(config.Label.PositionX, config.Label.PositionY))
 		if err != nil {
 			log.Println(err)
 			return

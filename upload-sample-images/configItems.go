@@ -22,7 +22,8 @@ type labelParams struct {
 }
 
 type serviceConfig struct {
-	Source      sourceParams
-	Destination destinationParams
-	Label       labelParams
+	Source           sourceParams
+	Destination      destinationParams
+	Label            labelParams
+	NeededImageCount int
 }
