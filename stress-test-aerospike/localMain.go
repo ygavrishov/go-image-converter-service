@@ -17,7 +17,7 @@ func panicOnError(err error) {
 
 type personInfo struct {
 	age    int
-	gender string
+	gender int
 }
 
 type frameInfo struct {
@@ -34,17 +34,18 @@ type facesInfo struct {
 }
 
 var staticFrames = [][]personInfo{
-	[]personInfo{personInfo{gender: "m", age: 33}},
-	[]personInfo{personInfo{gender: "m", age: 41}},
-	[]personInfo{personInfo{gender: "f", age: 25}},
-	[]personInfo{personInfo{gender: "f", age: 17}},
-	[]personInfo{personInfo{gender: "m", age: 13}},
-	[]personInfo{personInfo{gender: "m", age: 27}},
-	[]personInfo{personInfo{gender: "m", age: 23}},
-	[]personInfo{personInfo{gender: "m", age: 18}},
-	[]personInfo{personInfo{gender: "m", age: 26}, personInfo{gender: "f", age: 27}},
-	[]personInfo{personInfo{gender: "f", age: 21}}}
+	[]personInfo{personInfo{gender: 1, age: 33}},
+	[]personInfo{personInfo{gender: 1, age: 41}},
+	[]personInfo{personInfo{gender: 2, age: 25}},
+	[]personInfo{personInfo{gender: 2, age: 17}},
+	[]personInfo{personInfo{gender: 1, age: 13}},
+	[]personInfo{personInfo{gender: 1, age: 27}},
+	[]personInfo{personInfo{gender: 1, age: 23}},
+	[]personInfo{personInfo{gender: 1, age: 18}},
+	[]personInfo{personInfo{gender: 1, age: 26}, personInfo{gender: 2, age: 27}},
+	[]personInfo{personInfo{gender: 2, age: 21}}}
 var streamCount = 100
+var eventID = 1
 
 func main() {
 	//connect to aerospike
@@ -89,6 +90,7 @@ func main() {
 				"streamId":     streamID,
 				"time":         ts,
 				"thumbnailUrl": thumbnailURL,
+				"eventId":      eventID,
 			}
 			writePolicy := aero.NewWritePolicy(0, 0)
 			//writePolicy.Expiration = 2 // seconds
@@ -190,7 +192,7 @@ func main() {
 			staticFrame := staticFrames[task.streamID%10]
 			gendersMap := make(map[string]int, len(staticFrame))
 			for i := 0; i < len(task.faces); i++ {
-				gendersMap[task.faces[i]] = staticFrame[i].age
+				gendersMap[task.faces[i]] = staticFrame[i].gender
 			}
 
 			//save data in the database
